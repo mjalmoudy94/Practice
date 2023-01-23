@@ -1,10 +1,11 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
+﻿/.vs
 
-/.vs
-/AdvanceReplace/.vs/AdvanceReplace
-/AdvanceReplace/AdvanceReplace/bin/Debug
+/AdvanceReplace/.vs
+/AdvanceReplace/packages
+
+/AdvanceReplace/AdvanceReplace/bin
 /AdvanceReplace/AdvanceReplace/obj
-/AdvanceReplace/TestUnit/obj/Debug
-/AdvanceReplace/TestUnit/Properties
+
+/AdvanceReplace/TestUnit/bin
+/AdvanceReplace/TestUnit/obj
+

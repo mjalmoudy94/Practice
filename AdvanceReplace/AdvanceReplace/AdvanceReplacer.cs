@@ -8,24 +8,26 @@ namespace Jalmoudy.String
 {
     public static class AdvanceReplacer
     {
-        static readonly char[] charBoxArray;
-        static readonly Dictionary<char, char> charBoxDictionary;
+        static readonly char[] safeCharNumbersArray;
+        static readonly Dictionary<char, char> safeCharNumbersDictionary;
 
         static AdvanceReplacer()
         {
-            charBoxArray = new char[10] { '*', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            safeCharNumbersArray = new char[10] { '*', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
-            charBoxDictionary = new Dictionary<char, char>();
-            charBoxDictionary.Add('0', '*');
-            charBoxDictionary.Add('1', '1');
-            charBoxDictionary.Add('2', '2');
-            charBoxDictionary.Add('3', '3');
-            charBoxDictionary.Add('4', '4');
-            charBoxDictionary.Add('5', '5');
-            charBoxDictionary.Add('6', '6');
-            charBoxDictionary.Add('7', '7');
-            charBoxDictionary.Add('8', '8');
-            charBoxDictionary.Add('9', '9');
+            safeCharNumbersDictionary = new Dictionary<char, char>()
+            {
+                {'0', '*' },
+                {'1', '1' },
+                {'2', '2' },
+                {'3', '3' },
+                {'4', '4' },
+                {'5', '5' },
+                {'6', '6' },
+                {'7', '7' },
+                {'8', '8' },
+                {'9', '9' },
+            };
         }
 
         public static (bool isSuccess, string result) ReplaceZeroWithStar(string input, ReplaceingMethod replaceingMethod)
@@ -41,12 +43,12 @@ namespace Jalmoudy.String
                         foreach (char character in input.ToArray())
                         {
                             int characterAsIndex = int.Parse(character.ToString());
-                            replacingResult += charBoxArray[characterAsIndex];
+                            replacingResult += safeCharNumbersArray[characterAsIndex];
                         }
                         break;
 
                     case ReplaceingMethod.UsingDictionary:
-                        List<char> reslitList = input.ToList().Select(x => charBoxDictionary[x]).ToList();
+                        List<char> reslitList = input.ToList().Select(x => safeCharNumbersDictionary[x]).ToList();
                         replacingResult = string.Join("", reslitList);
                         break;
                 }
