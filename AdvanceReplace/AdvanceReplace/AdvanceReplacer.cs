@@ -8,57 +8,62 @@ namespace Jalmoudy.String
 {
     public static class AdvanceReplacer
     {
-        public static (bool isSuccess, string result) ReplaceZero_WithStar_UsingArray(string input)
-        {
-            char[] charBox = new char[10] { '*', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        static readonly char[] charBoxArray;
+        static readonly Dictionary<char, char> charBoxDictionary;
 
-            bool validation = true;
-            string result = "";
+        static AdvanceReplacer()
+        {
+            charBoxArray = new char[10] { '*', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+
+            charBoxDictionary = new Dictionary<char, char>();
+            charBoxDictionary.Add('0', '*');
+            charBoxDictionary.Add('1', '1');
+            charBoxDictionary.Add('2', '2');
+            charBoxDictionary.Add('3', '3');
+            charBoxDictionary.Add('4', '4');
+            charBoxDictionary.Add('5', '5');
+            charBoxDictionary.Add('6', '6');
+            charBoxDictionary.Add('7', '7');
+            charBoxDictionary.Add('8', '8');
+            charBoxDictionary.Add('9', '9');
+        }
+
+        public static (bool isSuccess, string result) ReplaceZeroWithStar(string input, ReplaceingMethod replaceingMethod)
+        {
+            bool validatingResult = true;
+            string replacingResult = string.Empty;
 
             try
             {
-                foreach (char character in input.ToArray())
+                switch (replaceingMethod)
                 {
-                    result += charBox[int.Parse(character.ToString())];
+                    case ReplaceingMethod.UsingArray:
+                        foreach (char character in input.ToArray())
+                        {
+                            int characterAsIndex = int.Parse(character.ToString());
+                            replacingResult += charBoxArray[characterAsIndex];
+                        }
+                        break;
+
+                    case ReplaceingMethod.UsingDictionary:
+                        List<char> reslitList = input.ToList().Select(x => charBoxDictionary[x]).ToList();
+                        replacingResult = string.Join("", reslitList);
+                        break;
                 }
             }
             catch (Exception)
             {
-                validation = false;
-                result = null;
+                validatingResult = false;
+                replacingResult = null;
             }
 
-            return (validation, result);
+            return (validatingResult, replacingResult);
         }
+    }
 
-        public static (bool isSuccess, string result) ReplaceZero_WithStar_UsingDictionary(string input)
-        {
-            Dictionary<char, char> charBox = new Dictionary<char, char>();
-            charBox.Add('0', '*');
-            charBox.Add('1', '1');
-            charBox.Add('2', '2');
-            charBox.Add('3', '3');
-            charBox.Add('4', '4');
-            charBox.Add('5', '5');
-            charBox.Add('6', '6');
-            charBox.Add('7', '7');
-            charBox.Add('8', '8');
-            charBox.Add('9', '9');
-
-            bool validation = true;
-            string result = string.Empty;
-
-            try
-            {
-                List<char> reslitList = input.ToList().Select(x => charBox[x]).ToList();
-                result = string.Join("", reslitList);
-            }
-            catch (Exception)
-            {
-                validation = false;
-            }
-
-            return (validation, result);
-        }
+    public enum ReplaceingMethod
+    {
+        UsingArray,
+        UsingDictionary,
     }
 }
