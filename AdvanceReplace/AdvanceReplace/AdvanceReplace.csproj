@@ -43,8 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdvanceReplacer.cs" />
+    <Compile Include="AdvanceZeroWithStarReplacer.cs" />
     <Compile Include="App.cs" />
+    <Compile Include="ArrayMethodZeroWithStarReplacer.cs" />
+    <Compile Include="DictionaryMethodZeroWithStarReplacer.cs" />
+    <Compile Include="IZeroWithStarReplacer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

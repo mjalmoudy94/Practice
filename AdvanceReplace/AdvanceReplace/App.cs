@@ -12,7 +12,9 @@ namespace Jalmoudy.String
         {
             string userInput = "01234567890";
 
-            var ReplacerResult = AdvanceReplacer.ReplaceZeroWithStar(userInput, ReplaceingMethod.UsingArray);
+            AdvanceZeroWithStarReplacer dictionaryMethodReplacer = new AdvanceZeroWithStarReplacer(new DictionaryMethodZeroWithStarReplacer());
+
+            var ReplacerResult = dictionaryMethodReplacer.ReplaceZeroWithStar(userInput);
             if (ReplacerResult.isSuccess)
             {
                 Console.WriteLine(userInput + " -> " + ReplacerResult.result);

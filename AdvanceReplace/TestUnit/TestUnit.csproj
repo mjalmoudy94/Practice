@@ -49,7 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdvanceReplaceTestUnit.cs" />
+    <Compile Include="AdvanceReplaceZeroWithStarTestUnit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
